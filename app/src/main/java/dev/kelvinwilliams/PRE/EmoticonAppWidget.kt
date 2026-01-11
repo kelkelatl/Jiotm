@@ -11,6 +11,14 @@ import android.widget.RemoteViews
 // This class handles all communication and events for your widget.
 class EmoticonAppWidget : AppWidgetProvider() {
 
+    private val EMOTICONS = arrayOf(
+        "🙏", "🖕", "👇", "👆", "☝️", "👈", "👉", "🫵", "👌", "🤏", 
+        "🤌", "🤙", "🫰", "🤞", "✌️", "🤘", "🤟", "🖖", "✋", "🖐️", 
+        "🤚", "👋", "🫷", "🫸", "🫲", "🫱", "🫴", "🫳", "👊", "✊", 
+        "🤛", "🤜", "🤲", "👐", "🙌", "🫶", "👎", "👍", "👏", "💪", 
+        "👃", "👂", "🦻", "🦶", "🦵"
+    )
+      
     // Define an action string for our specific widget click event
     companion object {
         private const val WIDGET_CLICK_ACTION = "dev.kelvinwilliams.PRE.WIDGET_CLICK"
@@ -47,19 +55,38 @@ class EmoticonAppWidget : AppWidgetProvider() {
 }
 
 // Global function used to set up the widget's display and click handler
-internal fun updateAppWidget(
-    context: Context,
-    appWidgetManager: AppWidgetManager,
-    appWidgetId: Int
-) {
-    // 1. Load the widget layout
-    val views = RemoteViews(context.packageName, R.layout.widget_layout)
+//
 
-    // 2. Set the static text (will be replaced by logic later)
-    // You can set the text to anything here for testing the display
-    views.setTextViewText(R.id.emoticon_text_view, "🙏") 
+    private fun getShuffledEmoticon(): String {
+        val tempArray = EMOTICONS.toMutableList()
+        
+        // Determine a random number of shuffles
+        val numShuffles = Random.nextInt(1, 6) 
 
-    // 3. Create a PendingIntent for the click action (Fixes the full-screen window issue)
+        // Shuffle the array 'numShuffles' times
+        repeat(numShuffles) {
+            tempArray.shuffle()
+        }
+        
+        // Select and return a random element from the result
+        val randomIndex = Random.nextInt(tempArray.size)
+        return tempArray[randomIndex]
+    }
+    
+// new
+  internal fun updateAppWidget(
+        context: Context,
+        appWidgetManager: AppWidgetManager,
+        appWidgetId: Int
+    ) {
+        val views = RemoteViews(context.packageName, R.layout.widget_layout)
+
+        // Use the passed emoticon or default to the first element ("🙏")
+        // for initial placement, satisfying the requirement.
+        val currentEmoticon = getShuffledEmoticon()
+        
+        views.setTextViewText(R.id.emoticon_text_view, currentEmoticon)
+
     val intent = Intent(context, EmoticonAppWidget::class.java).apply {
         action = EmoticonAppWidget.WIDGET_CLICK_ACTION
         // Add unique data to ensure the intent is treated as unique
@@ -78,4 +105,4 @@ internal fun updateAppWidget(
 
     // 5. Tell the AppWidgetManager to update the widget
     appWidgetManager.updateAppWidget(appWidgetId, views)
-}
+  }
