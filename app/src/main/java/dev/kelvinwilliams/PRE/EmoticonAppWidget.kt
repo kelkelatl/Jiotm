@@ -26,7 +26,6 @@ class EmoticonAppWidget : AppWidgetProvider() {
     
     // --- PRIVATE UTILITY METHOD ---
     private fun getShuffledEmoticon(): String {
-        // Accesses EMOTICONS defined inside the class
         val tempArray = EMOTICONS.toMutableList()
         
         val numShuffles = Random.nextInt(1, 6) 
@@ -37,7 +36,7 @@ class EmoticonAppWidget : AppWidgetProvider() {
         
         val randomIndex = Random.nextInt(tempArray.size)
         return tempArray[randomIndex]
-    }
+    } // <--- CORRECT CLOSING BRACE PLACED HERE
 
     // --- WIDGET UPDATE METHOD ---
     internal fun updateAppWidget(
@@ -47,7 +46,6 @@ class EmoticonAppWidget : AppWidgetProvider() {
     ) {
         val views = RemoteViews(context.packageName, R.layout.widget_layout)
 
-        // Calls getShuffledEmoticon() defined inside the class
         val currentEmoticon = getShuffledEmoticon()
         
         views.setTextViewText(R.id.emoticon_text_view, currentEmoticon)
@@ -67,7 +65,7 @@ class EmoticonAppWidget : AppWidgetProvider() {
         views.setOnClickPendingIntent(R.id.widget_root_layout, pendingIntent)
 
         appWidgetManager.updateAppWidget(appWidgetId, views)
-    }
+    } // <--- CORRECT CLOSING BRACE PLACED HERE
 
     // --- APPWIDGETPROVIDER OVERRIDES ---
 
@@ -77,7 +75,6 @@ class EmoticonAppWidget : AppWidgetProvider() {
         appWidgetIds: IntArray
     ) {
         for (appWidgetId in appWidgetIds) {
-            // Calls the internal updateAppWidget method
             updateAppWidget(context, appWidgetManager, appWidgetId)
         }
     }
@@ -96,14 +93,3 @@ class EmoticonAppWidget : AppWidgetProvider() {
         }
     }
 }
-        appWidgetId, 
-        intent,
-        PendingIntent.FLAG_UPDATE_CURRENT or PendingIntent.FLAG_IMMUTABLE // Use FLAG_IMMUTABLE for modern Android
-    )
-
-    // 4. Attach the PendingIntent to the root layout element (R.id.widget_root_layout)
-    views.setOnClickPendingIntent(R.id.widget_root_layout, pendingIntent)
-
-    // 5. Tell the AppWidgetManager to update the widget
-    appWidgetManager.updateAppWidget(appWidgetId, views)
-  }
