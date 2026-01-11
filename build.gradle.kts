@@ -1,13 +1,13 @@
-// build.gradle.kts (Project Level)
+// build.gradle.kts (Project Level) - FIXED
 
-// Top-level build file where you can add configuration options common to all sub-projects/modules.
 plugins {
-    // These plugins are required for a standard Android application
-    alias(libs.plugins.android.application) apply false
-    alias(libs.plugins.kotlin.android) apply false
+    // Replaced alias(libs.plugins.android.application)
+    id("com.android.application") version "8.2.0" apply false
+    
+    // Replaced alias(libs.plugins.kotlin.android)
+    id("org.jetbrains.kotlin.android") version "1.9.22" apply false
 }
 
-// Defines where Gradle should look for dependencies (e.g., Google's repository, Maven Central)
 buildscript {
     repositories {
         google()
