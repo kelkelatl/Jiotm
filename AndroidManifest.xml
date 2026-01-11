@@ -1,0 +1,17 @@
+<manifest 
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    package="dev.kelvinwilliams.PRE"> 
+    
+    <application
+        <receiver android:name=".EmoticonWidgetProvider"
+            android:exported="false"> <intent-filter>
+                <action android:name="android.appwidget.action.APPWIDGET_UPDATE" />
+                <action android:name="dev.kelvinwilliams.PRE.EMOTICON_WIDGET_TAP" /> 
+            </intent-filter>
+            <meta-data
+                android:name="android.appwidget.provider"
+                android:resource="@xml/widget_info" />
+        </receiver>
+        
+    </application>
+</manifest>
