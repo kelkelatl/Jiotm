@@ -74,7 +74,7 @@ class EmoticonAppWidget : AppWidgetProvider() {
     }
     
 // new
-  internal fun updateAppWidget(
+  override fun updateAppWidget(
         context: Context,
         appWidgetManager: AppWidgetManager,
         appWidgetId: Int
