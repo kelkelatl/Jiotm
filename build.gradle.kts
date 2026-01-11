@@ -1,14 +1,12 @@
-// build.gradle.kts (Project Level) - FIXED
+// build.gradle.kts (Project Level) - FINAL
 
 plugins {
-    // Replaced alias(libs.plugins.android.application)
     id("com.android.application") version "8.2.0" apply false
-    
-    // Replaced alias(libs.plugins.kotlin.android)
     id("org.jetbrains.kotlin.android") version "1.9.22" apply false
 }
 
-buildscript {
+// NOTE: Repositories for dependencies (NOT plugins) still go here
+allprojects {
     repositories {
         google()
         mavenCentral()
