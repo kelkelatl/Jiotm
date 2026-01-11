@@ -1,0 +1,40 @@
+<appwidget-provider 
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    
+    android:minWidth="130dp"
+    android:minHeight="130dp"
+    android:targetCellWidth="2"
+    android:targetCellHeight="2"
+
+    android:resizeMode="horizontal|vertical"
+    android:initialLayout="@layout/widget_layout"
+    android:updatePeriodMillis="0" android:widgetCategory="home_screen"
+    android:previewImage="@drawable/widget_preview" /> 
+    ```
+
+### 2. The Widget Layout (`widget_layout.xml`)
+
+To make the emoticon take up 90% of the available space, we'll use a `RelativeLayout` (or `FrameLayout`) and set the `textSize` of the `TextView` containing the emoticon to a very large value. Since `RemoteViews` for widgets don't easily support percentage-based sizing, we use a large, size-relative unit like `sp` or rely on the `TextView`'s alignment within the full-sized layout.
+
+```xml
+<RelativeLayout 
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/widget_root_layout"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/widget_background_shape" 
+    android:padding="8dp" > <TextView
+        android:id="@+id/emoticon_text_view"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerInParent="true"
+        
+        android:textSize="72sp" 
+        android:textAlignment="center"
+        android:textStyle="normal"
+        android:textColor="@android:color/black"
+        
+        android:text="?" /> 
+
+</RelativeLayout>
+                              
