@@ -1,12 +1,13 @@
 package dev.kelvinwilliams.PRE
 
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import androidx.appcompat.app.AppCompatActivity
 
+// This is the placeholder for your main application screen.
 class MainActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        // This will display a simple layout (activity_main.xml) when the app icon is tapped.
-        setContentView(R.layout.activity_main) 
+        // You would load your main app screen layout here if you had one
+        // setContentView(R.layout.activity_main) 
     }
 }
