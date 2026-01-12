@@ -3,7 +3,7 @@ name: Build Unsigned Release APK
 on:
   push:
     branches:
-      - main
+      - releases 
   workflow_dispatch: # Allows you to run it manually from the Actions tab
 
 jobs:
