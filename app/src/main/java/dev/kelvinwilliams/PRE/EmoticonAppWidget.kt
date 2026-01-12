@@ -7,6 +7,10 @@ import android.content.Context
 import android.content.Intent
 import android.util.Log
 import android.widget.RemoteViews
+import android.os.Vibrator
+import android.os.VibrationEffect
+import android.os.Build
+
 //import kotlin.random.Random // Required import for Random class
 
 class EmoticonAppWidget : AppWidgetProvider() {
@@ -36,6 +40,16 @@ class EmoticonAppWidget : AppWidgetProvider() {
         // val currentEmoticon = getShuffledEmoticon()
         val currentEmoticon = EMOTICONS.random()
         views.setTextViewText(R.id.emoticon_text_view, currentEmoticon)
+
+	val mic = kotlin.random.Random.nextInt(1, 43)
+            
+            // Check if the number is odd
+            if (mic % 2 != 0) {
+                val vibrator = context.getSystemService(Context.VIBRATOR_SERVICE) as Vibrator
+                
+                // Directly use VibrationEffect since we are on Android 14
+                vibrator.vibrate(VibrationEffect.createOneShot(50, VibrationEffect.DEFAULT_AMPLITUDE))
+            }
 
         val intent = Intent(context, EmoticonAppWidget::class.java).apply {
             action = WIDGET_CLICK_ACTION
