@@ -7,7 +7,7 @@ import android.content.Context
 import android.content.Intent
 import android.util.Log
 import android.widget.RemoteViews
-import kotlin.random.Random // Required import for Random class
+//import kotlin.random.Random // Required import for Random class
 
 class EmoticonAppWidget : AppWidgetProvider() {
 
@@ -46,8 +46,8 @@ class EmoticonAppWidget : AppWidgetProvider() {
     ) {
         val views = RemoteViews(context.packageName, R.layout.widget_layout)
 
-        val currentEmoticon = getShuffledEmoticon()
-        
+        // val currentEmoticon = getShuffledEmoticon()
+        val currentEmoticon = EMOTICONS.random()
         views.setTextViewText(R.id.emoticon_text_view, currentEmoticon)
 
         val intent = Intent(context, EmoticonAppWidget::class.java).apply {
