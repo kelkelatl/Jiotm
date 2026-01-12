@@ -24,19 +24,6 @@ class EmoticonAppWidget : AppWidgetProvider() {
         const val WIDGET_CLICK_ACTION = "dev.kelvinwilliams.PRE.WIDGET_CLICK" 
     }
     
-    // --- PRIVATE UTILITY METHOD ---
-    private fun getShuffledEmoticon(): String {
-        val tempArray = EMOTICONS.toMutableList()
-        
-        val numShuffles = Random.nextInt(1, 6) 
-
-        repeat(numShuffles) {
-            tempArray.shuffle()
-        }
-        
-        val randomIndex = Random.nextInt(tempArray.size)
-        return tempArray[randomIndex]
-    } // <--- CORRECT CLOSING BRACE PLACED HERE
 
     // --- WIDGET UPDATE METHOD ---
     internal fun updateAppWidget(
