@@ -11,13 +11,10 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.PRE"> 
 
-        <activity android:name=".MainActivity" android:exported="true">
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
-                <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>
+        <activity 
+            android:name=".MainActivity" 
+            android:exported="true">
         </activity>
-
         <receiver android:name=".EmoticonAppWidget" android:exported="true">
             <intent-filter>
                 <action android:name="android.appwidget.action.APPWIDGET_UPDATE" />
