@@ -20,8 +20,11 @@ android {
     }
     
     buildTypes {
-        release {
-            isMinifyEnabled = true
+	release {
+            // This line is the magic fix:
+            signingConfig = signingConfigs.getByName("debug")
+            
+            isMinifyEnabled = false
             proguardFiles(
                 getDefaultProguardFile("proguard-android-optimize.txt"),
                 "proguard-rules.pro"
