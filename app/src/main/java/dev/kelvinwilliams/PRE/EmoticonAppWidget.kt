@@ -27,7 +27,17 @@ class EmoticonAppWidget : AppWidgetProvider() {
     companion object {
         const val WIDGET_CLICK_ACTION = "dev.kelvinwilliams.PRE.WIDGET_CLICK" 
     }
-    
+
+	// --- SHUFFLE LOGIC REINSTATED ---
+    private fun getShuffledEmoticon(): String {
+        val tempArray = EMOTICONS.toMutableList()
+        // Shuffle multiple times as you requested for better randomness
+        val numShuffles = Random.nextInt(2, 6) 
+        repeat(numShuffles) {
+            tempArray.shuffle()
+        }
+        return tempArray.random()
+	}
 
     // --- WIDGET UPDATE METHOD ---
     internal fun updateAppWidget(
@@ -44,12 +54,12 @@ class EmoticonAppWidget : AppWidgetProvider() {
 	val mic = kotlin.random.Random.nextInt(1, 43)
             
             // Check if the number is odd
-            if (mic % 2 != 0) {
+			if (mic % 2 != 0) {
                 val vibrator = context.getSystemService(Context.VIBRATOR_SERVICE) as Vibrator
-                
-                // Directly use VibrationEffect since we are on Android 14
-                vibrator.vibrate(VibrationEffect.createOneShot(50, VibrationEffect.DEFAULT_AMPLITUDE))
-            }
+                // Increased to 100ms and using MAX_AMPLITUDE to ensure you feel it
+                val effect = VibrationEffect.createOneShot(100, VibrationEffect.MAX_AMPLITUDE)
+                vibrator.vibrate(effect)
+			}
 
         val intent = Intent(context, EmoticonAppWidget::class.java).apply {
             action = WIDGET_CLICK_ACTION
