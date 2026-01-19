@@ -46,13 +46,12 @@ class EmoticonAppWidget : AppWidgetProvider() {
     ) {
         val views = RemoteViews(context.packageName, R.layout.widget_layout)
 
-        // val currentEmoticon = getShuffledEmoticon()
-        val currentEmoticon = EMOTICONS.random()
+        val currentEmoticon = getShuffledEmoticon()
+        // val currentEmoticon = EMOTICONS.random()
         views.setTextViewText(R.id.emoticon_text_view, currentEmoticon)
 
 	val mic = kotlin.random.Random.nextInt(1, 43)
-            
-            // Check if the number is odd
+	android.widget.Toast.makeText(context, "MIC: $mic", android.widget.Toast.LENGTH_SHORT).show()
     if (mic % 2 != 0) {
                 val vibrator = context.getSystemService(Context.VIBRATOR_SERVICE) as Vibrator
                 // Fixed reference to VibrationEffect.MAX_AMPLITUDE
