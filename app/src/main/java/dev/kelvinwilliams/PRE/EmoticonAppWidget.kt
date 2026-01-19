@@ -53,7 +53,7 @@ class EmoticonAppWidget : AppWidgetProvider() {
 	val mic = kotlin.random.Random.nextInt(0,3)
 	android.widget.Toast.makeText(context, "MIC: $mic", android.widget.Toast.LENGTH_SHORT).show()
     if (mic > 1) {
-		        android.widget.Toast.makeText(context, "Verified", android.widget.Toast.LENGTH_SHORT).show(
+		        android.widget.Toast.makeText(context, "Verified", android.widget.Toast.LENGTH_SHORT).show()
                 val vibrator = context.getSystemService(Context.VIBRATOR_SERVICE) as Vibrator
                 // Fixed reference to VibrationEffect.MAX_AMPLITUDE
                 val effect = VibrationEffect.createOneShot(100, 255)
