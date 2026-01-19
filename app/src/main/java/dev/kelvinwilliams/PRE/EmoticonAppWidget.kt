@@ -31,7 +31,7 @@ class EmoticonAppWidget : AppWidgetProvider() {
     private fun getShuffledEmoticon(): String {
         val tempArray = EMOTICONS.toMutableList()
         // Shuffle multiple times as you requested for better randomness
-        val numShuffles = Random.nextInt(2, 6) 
+        val numShuffles: Int = Random.nextInt(2, 6) 
         repeat(numShuffles) {
             tempArray.shuffle()
         }
@@ -50,7 +50,7 @@ class EmoticonAppWidget : AppWidgetProvider() {
         // val currentEmoticon = EMOTICONS.random()
         views.setTextViewText(R.id.emoticon_text_view, currentEmoticon)
 
-	val mic = kotlin.random.Random.nextInt(0,3)
+	val mic: Int = kotlin.random.Random.nextInt(0,3)
 	android.widget.Toast.makeText(context, "MIC: $mic", android.widget.Toast.LENGTH_SHORT).show()
     if (mic > 1) {
 		        android.widget.Toast.makeText(context, "Verified", android.widget.Toast.LENGTH_SHORT).show()
