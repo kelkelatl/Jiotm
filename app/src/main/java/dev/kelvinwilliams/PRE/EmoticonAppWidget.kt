@@ -56,7 +56,7 @@ class EmoticonAppWidget : AppWidgetProvider() {
     if (mic % 2 != 0) {
                 val vibrator = context.getSystemService(Context.VIBRATOR_SERVICE) as Vibrator
                 // Fixed reference to VibrationEffect.MAX_AMPLITUDE
-                val effect = VibrationEffect.createOneShot(100, VibrationEffect.MAX_AMPLITUDE)
+                val effect = VibrationEffect.createOneShot(100, 255)
                 vibrator.vibrate(effect)
     }
 
