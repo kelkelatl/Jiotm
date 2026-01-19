@@ -10,8 +10,7 @@ import android.widget.RemoteViews
 import android.os.Vibrator
 import android.os.VibrationEffect
 import android.os.Build
-
-//import kotlin.random.Random // Required import for Random class
+import kotlin.random.Random // Required import for Random class
 
 class EmoticonAppWidget : AppWidgetProvider() {
 
@@ -54,12 +53,12 @@ class EmoticonAppWidget : AppWidgetProvider() {
 	val mic = kotlin.random.Random.nextInt(1, 43)
             
             // Check if the number is odd
-			if (mic % 2 != 0) {
+    if (mic % 2 != 0) {
                 val vibrator = context.getSystemService(Context.VIBRATOR_SERVICE) as Vibrator
-                // Increased to 100ms and using MAX_AMPLITUDE to ensure you feel it
+                // Fixed reference to VibrationEffect.MAX_AMPLITUDE
                 val effect = VibrationEffect.createOneShot(100, VibrationEffect.MAX_AMPLITUDE)
                 vibrator.vibrate(effect)
-			}
+    }
 
         val intent = Intent(context, EmoticonAppWidget::class.java).apply {
             action = WIDGET_CLICK_ACTION
