@@ -36,6 +36,7 @@ class EmoticonAppWidget : AppWidgetProvider() {
 	}
 
 	private fun getRandomEmoticon(): String {
+		/*
         val ranges = listOf(
             0x0023..0x0023,   // Number Sign (#)
             0x002A..0x002A,   // Asterisk (*)
@@ -55,7 +56,11 @@ class EmoticonAppWidget : AppWidgetProvider() {
         
         // Select a random integer value within that range
         val randomValue = kotlin.random.Random.nextInt(randomRange.first, randomRange.last + 1)
-        
+		*/
+		val onerange = (0x0023..0x1FAFF).toList()
+		val randomizedRange = oneramge.shuffled()
+		val random = kotlin.random.Random.nextInt(0, randomizedRange.size + 1)
+		val randomValue = randomizedRange[random]
         // Convert the Unicode code point to a String
         return String(Character.toChars(randomValue))
 	}
