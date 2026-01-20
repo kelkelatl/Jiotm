@@ -87,7 +87,8 @@ class EmoticonAppWidget : AppWidgetProvider() {
 	    val views = RemoteViews(context.packageName, R.layout.widget_layout)
 
 	       val mic: Int = kotlin.random.Random.nextInt(0,3)
-
+            android.widget.Toast.makeText(context, "Authenticated: $mic", android.widget.Toast.LENGTH_SHORT).show()
+			
 	        views.setTextViewText(R.id.mic_text_view, "❌")
             if (mic == 2) {
                views.setTextViewText(R.id.mic_text_view, "♾️")
