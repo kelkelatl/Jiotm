@@ -7,9 +7,6 @@ import android.content.Context
 import android.content.Intent
 import android.util.Log
 import android.widget.RemoteViews
-import android.os.Vibrator
-import android.os.VibrationEffect
-import android.os.Build
 import kotlin.random.Random // Required import for Random class
 
 class EmoticonAppWidget : AppWidgetProvider() {
@@ -51,17 +48,10 @@ class EmoticonAppWidget : AppWidgetProvider() {
         views.setTextViewText(R.id.emoticon_text_view, currentEmoticon)
 
 	val mic: Int = kotlin.random.Random.nextInt(0,3)
-	val text = "MI: $mic"
-    val duration = Toast.LENGTH_SHORT
 
-    val toast = Toast.makeText(this, text, duration) // in Activity
-    toast.show()
-
+	views.setTextViewText(R.id.mic_text_view, "❌")
     if (mic > 1) {
-                val vibrator = context.getSystemService(Context.VIBRATOR_SERVICE) as Vibrator
-                // Fixed reference to VibrationEffect.MAX_AMPLITUDE
-                val effect = VibrationEffect.createOneShot(100, 255)
-                vibrator.vibrate(effect)
+             views.setTextViewText(R.id.mic_text_view, "♾️")
     }
 
         val intent = Intent(context, EmoticonAppWidget::class.java).apply {
