@@ -81,7 +81,9 @@ class EmoticonAppWidget : AppWidgetProvider() {
         appWidgetId: Int
     ) {
         val views = RemoteViews(context.packageName, R.layout.widget_layout)
+        views.setTextViewText(R.id.emoticon_text_view, "J")
 
+			
         val currentEmoticon = getShuffledEmoticon(context)
 		// val currentEmoticon = getRandomEmoticon()
         // val currentEmoticon = EMOTICONS.random()
