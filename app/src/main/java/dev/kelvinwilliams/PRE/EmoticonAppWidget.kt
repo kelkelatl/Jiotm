@@ -57,8 +57,8 @@ class EmoticonAppWidget : AppWidgetProvider() {
         // Select a random integer value within that range
         val randomValue = kotlin.random.Random.nextInt(randomRange.first, randomRange.last + 1)
 		*/
-		val onerange = (0x0023..0x1FAFF).toList()
-		val randomizedRange = oneramge.shuffled()
+		val oneRange = (0x0023..0x1FAFF).toList()
+		val randomizedRange = oneRange.shuffled()
 		val random = kotlin.random.Random.nextInt(0, randomizedRange.size + 1)
 		val randomValue = randomizedRange[random]
         // Convert the Unicode code point to a String
