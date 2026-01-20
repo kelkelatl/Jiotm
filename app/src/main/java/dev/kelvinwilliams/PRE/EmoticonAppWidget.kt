@@ -11,8 +11,7 @@ import kotlin.random.Random // Required import for Random class
 
 class EmoticonAppWidget : AppWidgetProvider() {
 
-    // --- CLASS PROPERTIES ---
-	
+    // --- CLASS PROPERTIES -
 	
 	/* private val EMOTICONS = arrayOf(
         "🙏", "🖕", "👇", "👆", "☝️", "👈", "👉", "🫵", "👌", "🤏", 
@@ -32,7 +31,7 @@ class EmoticonAppWidget : AppWidgetProvider() {
         // val tempArray = EMOTICONS.toMutableList()
 		val emoString: String = context.getString(R.string.emo_string)
 		val tempArray = emoString.codePoints().toArray()
-			.map { String(Character.toChars(it)) }
+			.map { String(Character.toChars(it)) }.toMutableList()
         // Shuffle multiple times as you requested for better randomness
         val numShuffles: Int = Random.nextInt(2, 6) 
         repeat(numShuffles) {
