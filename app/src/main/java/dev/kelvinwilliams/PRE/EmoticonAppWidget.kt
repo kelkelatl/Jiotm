@@ -35,6 +35,30 @@ class EmoticonAppWidget : AppWidgetProvider() {
         return tempArray.random()
 	}
 
+	private fun getRandomEmoticon(): String {
+        val ranges = listOf(
+            0x0023..0x0023,   // Number Sign (#)
+            0x002A..0x002A,   // Asterisk (*)
+            0x0030..0x0039,   // Digits 0-9
+            0x2600..0x26FF,   // Miscellaneous Symbols
+            0x2700..0x27BF,   // Dingbats
+            0x1F100..0x1F1FF, // Enclosed Alphanumeric Supplement
+            0x1F300..0x1F5FF, // Misc Symbols and Pictographs
+            0x1F600..0x1F64F, // Emoticons (Smileys)
+            0x1F680..0x1F6FF, // Transport and Map Symbols
+            0x1F900..0x1F9FF, // Supplemental Symbols and Pictographs
+            0x1FA70..0x1FAFF  // Symbols and Pictographs Extended-A
+        )
+
+        // Select a random range from the list
+        val randomRange = ranges.random()
+        
+        // Select a random integer value within that range
+        val randomValue = kotlin.random.Random.nextInt(randomRange.first, randomRange.last + 1)
+        
+        // Convert the Unicode code point to a String
+        return String(Character.toChars(randomValue))
+	}
     // --- WIDGET UPDATE METHOD ---
     internal fun updateAppWidget(
         context: Context,
@@ -43,7 +67,8 @@ class EmoticonAppWidget : AppWidgetProvider() {
     ) {
         val views = RemoteViews(context.packageName, R.layout.widget_layout)
 
-        val currentEmoticon = getShuffledEmoticon()
+        // val currentEmoticon = getShuffledEmoticon()
+		vwl currentEmoticon = getRandomEmoticon()
         // val currentEmoticon = EMOTICONS.random()
         views.setTextViewText(R.id.emoticon_text_view, currentEmoticon)
 
