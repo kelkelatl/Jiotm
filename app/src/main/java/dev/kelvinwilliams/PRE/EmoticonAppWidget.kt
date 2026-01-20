@@ -31,11 +31,15 @@ class EmoticonAppWidget : AppWidgetProvider() {
 
 	// --- SHUFFLE LOGIC REINSTATED ---
     private fun getShuffledEmoticon(context: Context): String {
-		if (emoList == null) {
+	    var currentList = emoList
+		
+		if (currentList == null) {
             val emoString = context.getString(R.string.emo_string)
-            emoList = emoString.codePoints().toArray()
+            val newList = emoString.codePoints().toArray()
                 .map { String(Character.toChars(it)) }
                 .toMutableList()
+			emoList = newList
+			currentList = newList
 		}
 
         val numShuffles: Int = Random.nextInt(2, 6) 
