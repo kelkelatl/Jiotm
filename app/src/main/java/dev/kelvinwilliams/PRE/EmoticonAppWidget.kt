@@ -41,13 +41,19 @@ class EmoticonAppWidget : AppWidgetProvider() {
     internal fun updateAppWidget(
         context: Context,
         appWidgetManager: AppWidgetManager,
-        appWidgetId: Int
+        appWidgetId: Int,
+		mic: Int
     ) {
         val views = RemoteViews(context.packageName, R.layout.widget_layout)
 
         val currentEmoticon = getShuffledEmoticon()
         // val currentEmoticon = EMOTICONS.random()
         views.setTextViewText(R.id.emoticon_text_view, currentEmoticon)
+	        
+		views.setTextViewText(R.id.mic_text_view, "❌")
+        if (mic == 2) {
+               views.setTextViewText(R.id.mic_text_view, "♾️")
+		}
 
         val intent = Intent(context, EmoticonAppWidget::class.java).apply {
             action = WIDGET_CLICK_ACTION
@@ -71,7 +77,8 @@ class EmoticonAppWidget : AppWidgetProvider() {
     override fun onUpdate(
         context: Context,
         appWidgetManager: AppWidgetManager,
-        appWidgetIds: IntArray
+        appWidgetIds: IntArray,
+		mic: Int
     ) {
         for (appWidgetId in appWidgetIds) {
             updateAppWidget(context, appWidgetManager, appWidgetId)
@@ -84,14 +91,11 @@ class EmoticonAppWidget : AppWidgetProvider() {
         if (WIDGET_CLICK_ACTION == intent.action) {
             Log.d("Widget", "Emoticon widget clicked!")
 
-	    val views = RemoteViews(context.packageName, R.layout.widget_layout)
-
 	       val mic: Int = kotlin.random.Random.nextInt(0,3)
             android.widget.Toast.makeText(context, "Authenticated: $mic", android.widget.Toast.LENGTH_SHORT).show()
 			
-	        views.setTextViewText(R.id.mic_text_view, "❌")
+	        
             if (mic == 2) {
-               views.setTextViewText(R.id.mic_text_view, "♾️")
 
             // Notification-style Vibration
                val vibrator = context.getSystemService(Context.VIBRATOR_SERVICE) as Vibrator
@@ -109,7 +113,7 @@ class EmoticonAppWidget : AppWidgetProvider() {
             val appWidgetIds = appWidgetManager.getAppWidgetIds(
                 intent.component
             )
-            onUpdate(context, appWidgetManager, appWidgetIds)
+            onUpdate(context, appWidgetManager, appWidgetIds, mic)
         }
     }
 }
