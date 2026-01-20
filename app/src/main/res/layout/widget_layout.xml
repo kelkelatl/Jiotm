@@ -26,5 +26,16 @@
         android:textColor="@android:color/black"
         
         android:text="C" /> 
+    
+    <TextView
+        android:id="@+id/mic_text_view"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentRight="true"
+        android:layout_margin="2dp"
+        android:textSize="10sp"
+        android:textColor="@android:color/darker_gray"
+        android:text="❌" />
 
 </RelativeLayout>
