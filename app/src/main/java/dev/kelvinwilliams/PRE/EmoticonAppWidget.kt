@@ -48,11 +48,16 @@ class EmoticonAppWidget : AppWidgetProvider() {
            return currentList.random()
 		}
 
-        val numShuffles = Random.nextInt(2, 6) 
-        repeat(numShuffles) {
-            emoList.shuffle()
-        }
-        return emoList.random()
+		if (emoList != null) {
+
+            val numShuffles = Random.nextInt(2, 6) 
+            repeat(numShuffles) {
+                emoList.shuffle()
+            }
+            return emoList.random()
+		}
+
+		return "?"
 	}
 
 	private fun getRandomEmoticon(): String {
