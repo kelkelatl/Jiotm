@@ -11,7 +11,7 @@ import kotlin.random.Random // Required import for Random class
 
 class EmoticonAppWidget : AppWidgetProvider() {
 
-	private var emoList: MutableList<String>? = null
+	private var emoList = null
 
 	
     // --- CLASS PROPERTIES -
