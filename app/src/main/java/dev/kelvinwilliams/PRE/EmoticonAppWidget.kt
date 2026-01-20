@@ -7,6 +7,8 @@ import android.content.Context
 import android.content.Intent
 import android.util.Log
 import android.widget.RemoteViews
+import android.os.Vibrator
+import android.os.VibrationEffect
 import kotlin.random.Random // Required import for Random class
 
 class EmoticonAppWidget : AppWidgetProvider() {
@@ -52,6 +54,18 @@ class EmoticonAppWidget : AppWidgetProvider() {
 	views.setTextViewText(R.id.mic_text_view, "❌")
     if (mic > 1) {
              views.setTextViewText(R.id.mic_text_view, "♾️")
+
+            // Notification-style Vibration
+            val vibrator = context.getSystemService(Context.VIBRATOR_SERVICE) as Vibrator
+            
+            // Pattern: Start immediately, vibrate 200ms, pause 100ms, vibrate 200ms
+            // Amplitudes: 0 (off), 255 (max), 0 (off), 255 (max)
+            val timings = longArrayOf(0, 200, 100, 200)
+            val amplitudes = intArrayOf(0, 255, 0, 255)
+            
+            val effect = VibrationEffect.createWaveform(timings, amplitudes, -1) // -1 means do not repeat
+            vibrator.vibrate(effect)
+			
     }
 
         val intent = Intent(context, EmoticonAppWidget::class.java).apply {
