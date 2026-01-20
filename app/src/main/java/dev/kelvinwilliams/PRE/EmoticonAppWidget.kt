@@ -40,9 +40,15 @@ class EmoticonAppWidget : AppWidgetProvider() {
                 .toMutableList()
 			emoList = newList
 			currentList = newList
+			
+			val numShuffles = Random.nextInt(2, 6) 
+			repeat(numShuffles) {
+                currentList.shuffle()
+            }
+           return currentList.random()
 		}
 
-        val numShuffles: Int = Random.nextInt(2, 6) 
+        val numShuffles = Random.nextInt(2, 6) 
         repeat(numShuffles) {
             emoList.shuffle()
         }
