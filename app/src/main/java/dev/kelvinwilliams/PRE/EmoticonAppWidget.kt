@@ -11,6 +11,8 @@ import kotlin.random.Random // Required import for Random class
 
 class EmoticonAppWidget : AppWidgetProvider() {
 
+	private var emoList: MutableList<String>
+	
     // --- CLASS PROPERTIES -
 	
 	/* private val EMOTICONS = arrayOf(
@@ -28,16 +30,18 @@ class EmoticonAppWidget : AppWidgetProvider() {
 
 	// --- SHUFFLE LOGIC REINSTATED ---
     private fun getShuffledEmoticon(context: Context): String {
-        // val tempArray = EMOTICONS.toMutableList()
-		val emoString: String = context.getString(R.string.emo_string)
-		val tempArray = emoString.codePoints().toArray()
+		if (emoList == null) {
+		    val emoString: String = context.getString(R.string.emo_string)
+		    emoList = emoString.codePoints().toArray()
 			.map { String(Character.toChars(it)) }.toMutableList()
-        // Shuffle multiple times as you requested for better randomness
+			
+		}
+
         val numShuffles: Int = Random.nextInt(2, 6) 
         repeat(numShuffles) {
-            tempArray.shuffle()
+            emoList.shuffle()
         }
-        return tempArray.random()
+        return emoList.random()
 	}
 
 	private fun getRandomEmoticon(): String {
