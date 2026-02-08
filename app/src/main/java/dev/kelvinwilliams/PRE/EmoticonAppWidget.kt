@@ -56,7 +56,7 @@ class EmoticonAppWidget : AppWidgetProvider() {
 
         val mic = Random.nextLong()
         val target = 777L
-        views.setTextViewText(R.id.mic_text_view, "❌")
+        views.setTextViewText(R.id.mic_text_view, "")
         if (mic == target) {
             views.setTextViewText(R.id.mic_text_view, "♾️")
         }
