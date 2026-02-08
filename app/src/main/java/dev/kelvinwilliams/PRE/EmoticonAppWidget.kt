@@ -54,9 +54,10 @@ class EmoticonAppWidget : AppWidgetProvider() {
         val currentEmoticon = getShuffledEmoticon(context)
         views.setTextViewText(R.id.emoticon_text_view, currentEmoticon)
 
-        val mic: Int = Random.nextInt(0, 3)
+        val mic = Random.nextLong()
+        val target = 777L
         views.setTextViewText(R.id.mic_text_view, "❌")
-        if (mic == 2) {
+        if (mic == target) {
             views.setTextViewText(R.id.mic_text_view, "♾️")
         }
 
