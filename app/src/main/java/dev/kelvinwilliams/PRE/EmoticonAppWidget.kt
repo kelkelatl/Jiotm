@@ -51,15 +51,19 @@ class EmoticonAppWidget : AppWidgetProvider() {
     ) {
         val views = RemoteViews(context.packageName, R.layout.widget_layout)
         
-        val currentEmoticon = getShuffledEmoticon(context)
-        views.setTextViewText(R.id.emoticon_text_view, currentEmoticon)
+        
 
         val mic = Random.nextLong()
         val target = 777L
-        views.setTextViewText(R.id.mic_text_view, "")
+        val currentEmoticon = getShuffledEmoticon(context)
+
         if (mic == target) {
+            views.setTextViewText(R.id.emoticon_text_view, currentEmoticon)
             views.setTextViewText(R.id.mic_text_view, "♾️")
-        }
+        } else {
+            views.setTextViewText(R.id.emoticon_text_view, "")
+            views.setTextViewText(R.id.mic_text_view, currentEmoticon)
+        } 
 
         val intent = Intent(context, EmoticonAppWidget::class.java).apply {
             action = WIDGET_CLICK_ACTION
